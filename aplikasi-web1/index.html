@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Enkripsi dan Dekripsi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔐 Web Enkripsi dan Dekripsi</h1>
+
+        <label>Kunci Rahasia (Password)</label>
+        <div class="key-container" id="keyContainer">
+            <input type="password" id="key" placeholder="Masukkan kunci...">
+            
+            <div class="eye-toggle-btn" onclick="toggleKeyVisibility()" title="Tampilkan Kunci">
+                <svg class="icon-eye-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.632 5 12 5c4.368 0 8.268 2.943 9.542 7-1.274 4.057-5.174 7-9.542 7-4.368 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <svg class="icon-eye-closed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                </svg>
+            </div>
+        </div>
+
+        <label>Pilih Jenis Input</label>
+        <select id="inputType" onchange="toggleInputMode()">
+            <option value="text">Teks Biasa</option>
+            <option value="file">File / Gambar (.png, .jpg, .txt)</option>
+        </select>
+
+        <div id="textInputArea">
+            <textarea id="inputText" placeholder="Ketik pesan rahasia di sini, ATAU paste Token Base64 hasil enkripsi..."></textarea>
+        </div>
+
+        <div id="fileInputArea" style="display: none;">
+            <input type="file" id="inputFile">
+            <small style="color: #cbd5e1;">(Pilih file untuk dienkripsi, atau pilih file Token .txt untuk didekripsi)</small>
+        </div>
+
+        <div class="row">
+            <button class="encrypt" onclick="encryptData()">🔒 Enkripsi</button>
+            <button class="decrypt" onclick="decryptData()">🔓 Dekripsi</button>
+        </div>
+
+        <label>Output Hasil</label>
+        <textarea id="outputText" placeholder="Hasil token enkripsi atau teks dekripsi akan muncul murni di sini..." readonly></textarea>
+        
+        <button id="downloadBtn" class="download-btn" onclick="downloadResult()">📥 Download Hasil File/Token</button>
+        <div id="previewContainer">
+            <img id="previewImage" alt="Preview Gambar">
+        </div>
+
+        <div class="footer">
+            <strong>Fungsi Terintegrasi:</strong><br>
+            Feistel Block Cipher (CBC) • RSA • Hash 32-bit • Base64 Data Packing • File/Image Handling
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
